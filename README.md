@@ -3,7 +3,9 @@
 
 ![效果如下图](https://github.com/ete8652/AnimationRacingCar/blob/master/eitn3-tjw3p.gif?raw=true)
 
+
 朋友拜托我写一个赛车动画，总结了一下需求。
+[博客地址](https://blog.csdn.net/fenghuangjc/article/details/81260111)
 
 ### 需求：
 
@@ -13,7 +15,7 @@
 
 ### 实现思路：
 
-加速动画：原来我想用gif图替代，但是发现对CPU消耗太大，只加了两个轮子的gif图，模拟器CPU就很高（有一种用），所以我使用了定时器，切换图片的方法，iPhone6上CPU使用率降到了15%。
+加速动画：原来我想用gif图替代，但是发现对CPU消耗太大，只加了两个轮子的gif图，模拟器CPU就很高，所以我使用了定时器，切换图片的方法，iPhone6上CPU使用率降到了15%。
 ```
 //切换图片(定时器调用)
 -(void)GIFAnimation{
