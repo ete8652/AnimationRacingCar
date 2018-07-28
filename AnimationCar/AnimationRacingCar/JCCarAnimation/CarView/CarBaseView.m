@@ -56,7 +56,7 @@
         _animationTimer = nil;
     }
     [self GIFAnimation];
-    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(GIFAnimation) userInfo:nil repeats:YES];
+    _animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(GIFAnimation) userInfo:nil repeats:YES];
 }
 
 -(void)GIFAnimation{

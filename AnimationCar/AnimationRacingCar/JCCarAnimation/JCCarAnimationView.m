@@ -42,12 +42,9 @@
         [self creatCarImage:i];
     }
     
-    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self startRun];
-    });
-    
-    
+    });    
 }
 
 -(void)startRun{
@@ -55,32 +52,13 @@
     [[NSRunLoop currentRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
-
--(void)startGame{
-    //地图移动
-    //背景移动
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:10 animations:^{
-        weakSelf.headBackImageV.frame = CGRectMake(weakSelf.headBackImageV.frame.size.width - weakSelf.frame.size.width, weakSelf.headBackImageV.frame.origin.y, weakSelf.headBackImageV.frame.size.width, weakSelf.headBackImageV.frame.size.height);
-        weakSelf.roadImageV.frame = CGRectMake(weakSelf.roadImageV.frame.size.width - weakSelf.frame.size.width, weakSelf.roadImageV.frame.origin.y, weakSelf.roadImageV.frame.size.width, weakSelf.roadImageV.frame.size.height);
-        weakSelf.finishersImageV.frame = CGRectMake(300, weakSelf.finishersImageV.frame.origin.y, weakSelf.finishersImageV.frame.size.width, weakSelf.finishersImageV.frame.size.height);
-
-    } completion:^(BOOL finished) {
-        
-    }];
-    //隐藏起跑线
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.finishersImageV.hidden = YES;
-    });
-}
-
 -(void)movieImage{
     CGFloat movieX = 5;
-    if (self.roadImageV.frame.origin.x > -5 || self.headBackImageV.frame.origin.x > -22) {
+    CGFloat refreshX = [UIScreen mainScreen].bounds.size.height==667.0?-22:0;
+    if (self.roadImageV.frame.origin.x > -5 || self.headBackImageV.frame.origin.x > refreshX) {
         //一圈后背景切换
         self.roadImageV.frame = _roadRect;
         self.headBackImageV.frame = _headBackRect;
-        self.finishersImageV.hidden = YES;
     }
     if (!_roadRect.origin.x) {
         //记录背景图起始点
@@ -94,6 +72,12 @@
     //改变背景图位置
     self.headBackImageV.frame = CGRectMake(self.headBackImageV.frame.origin.x + movieX , self.headBackImageV.frame.origin.y, self.headBackImageV.frame.size.width, self.headBackImageV.frame.size.height);
     self.roadImageV.frame = CGRectMake(self.roadImageV.frame.origin.x + movieX , self.roadImageV.frame.origin.y, self.roadImageV.frame.size.width, self.roadImageV.frame.size.height);
+    if (self.roadImageV.frame.origin.x<0) {
+        self.finishersImageV.hidden = YES;
+    }else{
+        self.roadImageV.frame = CGRectMake(self.roadImageV.frame.origin.x + movieX , self.roadImageV.frame.origin.y, self.roadImageV.frame.size.width, self.roadImageV.frame.size.height);
+    }
+
 }
 
 
