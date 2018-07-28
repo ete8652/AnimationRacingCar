@@ -1,6 +1,6 @@
 # AnimationRacingCar
 赛车动画
-！[效果如下图]（https://s19.aconvert.com/convert/p3r68-cdx67/eitn3-tjw3p.gif）
+![效果如下图](https://github.com/ete8652/AnimationRacingCar/blob/master/eitn3-tjw3p.gif?raw=true)
 朋友拜托我写一个赛车动画，总结了一下需求。
 ###需求：
 1.赛车有加速动画，轮子滚动，有空气、火焰效果
